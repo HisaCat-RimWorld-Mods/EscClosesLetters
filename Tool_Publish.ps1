@@ -10,6 +10,9 @@ $Root = $PSScriptRoot
 $modDirName = Split-Path $Root -Leaf
 $publishDir = "../${modDirName}_Publish"
 
+Write-Host "Publishing..." -ForegroundColor Cyan
+Write-Host
+
 Push-Location -LiteralPath $Root
 try {
     & filterexport -c './PublishFileFilter.xml' -o $publishDir -y
@@ -21,4 +24,5 @@ finally {
     Pop-Location
 }
 
+Write-Host
 Write-Host "Done. Output: $publishDir" -ForegroundColor Green

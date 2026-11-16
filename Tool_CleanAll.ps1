@@ -45,7 +45,7 @@ if ($versions.Count -eq 0) {
 
 $configs = @('Debug', 'Release')
 
-Write-Host "Clean: supported versions = $($versions -join ', ')" -ForegroundColor Cyan
+Write-Host "Clean All: RimWorld targets from About.xml: $($versions -join ', ')" -ForegroundColor Cyan
 Write-Host "Configurations = $($configs -join ', ')`n" -ForegroundColor Cyan
 
 foreach ($ver in $versions) {

@@ -8,6 +8,7 @@
         <Pattern>.git/</Pattern>
         <Pattern>Source/</Pattern>
         <Pattern>.vscode/</Pattern>
+        <Pattern>.vs/</Pattern>
         <Pattern>.gitignore</Pattern>
         <Pattern>*.props</Pattern>
         <Pattern>*.ps1</Pattern>

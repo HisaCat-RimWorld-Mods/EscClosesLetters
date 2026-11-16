@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] - 2026-11-17
+
+### Fixed
+
+- Dismiss keys and outside clicks now work for letters that inherit `OpenLetter` without overriding it, such as standard notifications and funeral opportunities.
+
 ## [1.1.2] - 2026-11-17
 
 ### Added
@@ -29,7 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release.
 
-[unreleased]: https://github.com/hisacat/EscClosesLetters/compare/v1.1.2...HEAD
+[unreleased]: https://github.com/hisacat/EscClosesLetters/compare/v1.1.3...HEAD
+[1.1.3]: https://github.com/hisacat/EscClosesLetters/releases/tag/v1.1.3
 [1.1.2]: https://github.com/hisacat/EscClosesLetters/releases/tag/v1.1.2
 [1.1.1]: https://github.com/hisacat/EscClosesLetters/releases/tag/v1.1.1
 [1.0.1]: https://github.com/hisacat/EscClosesLetters/releases/tag/v1.0.1

@@ -34,15 +34,20 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPriority(Priority.Last)]
         static void Prefix(ChoiceLetter __instance, MethodBase __originalMethod, ref OpenLetterContext __state)
         {
-            // If multiple OpenLetter overrides exist in the inheritance chain and a leaf override
+            // If multiple OpenLetter overrides exist in the inheritance chain and a derived override
             // calls base.OpenLetter(), Harmony patches on each override can all run for one logical call.
-            // Restrict the opening-flag ownership to the leaf overridden method only,
-            // so the flag is set/cleared exactly once for that call.
-            // * The vanilla game code does not contain such cases.
-            // However, other mods may use this pattern, so this serves as a minimal
-            // safeguard against that possibility.
-            __state = new() { isLeafOverriddenMethodForThisCall = __instance.GetType() == __originalMethod.DeclaringType };
-            if (__state.isLeafOverriddenMethodForThisCall == false) return;
+            // Own the opening flag only on the leaf method for this call, so it is set and cleared once.
+            // A type that inherits OpenLetter without overriding it is still the leaf: the running
+            // method is the nearest declared override, not necessarily a method declared on the instance type.
+            // * The vanilla game code does not call base.OpenLetter() through such a chain.
+            // Other mods may use that pattern, so this is a minimal safeguard.
+            __state = new() { isLeafOverriddenMethodForThisCall = IsLeafOpenLetterForThisCall(__instance, __originalMethod) };
+            if (__state.isLeafOverriddenMethodForThisCall == false)
+            {
+                Logger.Message($"{nameof(ChoiceLetter.OpenLetter)}.{nameof(Prefix)}",
+                    $"Not a leaf overridden method for this call. Type: '{__instance.GetType().FullName}'");
+                return;
+            }
 
             LetterDismissContext.IsOpeningLetter = true;
             Logger.Message($"{nameof(ChoiceLetter.OpenLetter)}.{nameof(Prefix)}",
@@ -56,6 +61,24 @@ namespace HisaCat.EscClosesLetters
             LetterDismissContext.IsOpeningLetter = false;
             Logger.Message($"{nameof(ChoiceLetter.OpenLetter)}.{nameof(Finalizer)}",
                 $"Type: '{__instance.GetType().FullName}'");
+        }
+
+        // True when no type between the instance and this method declares another OpenLetter in the same virtual chain.
+        // Inherited implementations (StandardLetter -> ChoiceLetter.OpenLetter) are the leaf for that instance.
+        // A further override that called base.OpenLetter() makes this method not the leaf.
+        static bool IsLeafOpenLetterForThisCall(ChoiceLetter instance, MethodBase originalMethod)
+        {
+            var original = (MethodInfo)originalMethod;
+            var root = original.GetBaseDefinition();
+            for (var type = instance.GetType(); type != null && type != original.DeclaringType; type = type.BaseType)
+            {
+                var declared = type.GetMethod(nameof(ChoiceLetter.OpenLetter),
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly,
+                    null, System.Type.EmptyTypes, null);
+                if (declared != null && declared.GetBaseDefinition() == root)
+                    return false;
+            }
+            return true;
         }
     }
 

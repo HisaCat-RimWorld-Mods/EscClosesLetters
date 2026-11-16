@@ -82,15 +82,11 @@
         },
         {
             "label": "publish",
-            "type": "process",
-            "command": "filterexport",
-            "args": [
-                "-c",
-                "./PublishFileFilter.xml",
-                "-o",
-                "../${workspaceFolderBasename}_Publish",
-                "-y"
-            ],
+            "type": "shell",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/Tool_Publish.ps1\"",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "problemMatcher": [ ]
         }
     ],

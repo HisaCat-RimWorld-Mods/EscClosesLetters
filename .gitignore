@@ -418,4 +418,5 @@ FodyWeavers.xsd
 /*/Assemblies/*.dll
 /*/Assemblies/*.xml
 /*/Assemblies/*.pdb
+/*/Assemblies/*.deps.json
 /.Designs/
