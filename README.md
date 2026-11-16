@@ -13,7 +13,7 @@ A RimWorld mod that lets you close letter popups with the `Cancel` and `Accept` 
 
 ## Supported RimWorld versions
 
-- `1.4`, `1.5`, `1.6`
+- `1.4`, `1.5`, `1.6`, `1.7`
 
 ## Requirements
 
