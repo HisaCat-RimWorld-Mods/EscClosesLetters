@@ -5,7 +5,7 @@
   for both Debug and Release (so OutputPath and obj records match each build).
 
 .NOTES
-  Mirrors BuildAllAndPublish.ps1 path rules (folder name = solution name under Source/).
+  Mirrors Tool_BuildAll.ps1 path rules (folder name = solution name under Source/).
 #>
 param()
 
@@ -51,6 +51,12 @@ Write-Host "Configurations = $($configs -join ', ')`n" -ForegroundColor Cyan
 foreach ($ver in $versions) {
     foreach ($cfg in $configs) {
         Write-Host "=== dotnet clean -c $cfg (RimWorld $ver) ===" -ForegroundColor Yellow
+        # clean does not restore. assets.json only has the last build's TFM
+        # (net472 for 1.4-1.6, net10.0 for 1.7), so restore first or NETSDK1005.
+        & dotnet restore $Sln "/p:RimWorldVersionOverride=$ver"
+        if ($LASTEXITCODE -ne 0) {
+            throw "dotnet restore failed for RimWorld $ver (exit code $LASTEXITCODE)."
+        }
         $cleanArgs = @(
             'clean',
             $Sln,

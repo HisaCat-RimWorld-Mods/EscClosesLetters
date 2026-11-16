@@ -1,11 +1,11 @@
 <Project>
-	<!-- Nessecary properties -->
+	<!-- Necessary properties -->
 	<PropertyGroup>
-		<TargetRimWorldVersion>1.6</TargetRimWorldVersion>
+		<TargetRimWorldVersion>1.7</TargetRimWorldVersion>
 
 		<ModName>Esc Closes Letters</ModName>
 		<ModProjectName>EscClosesLetters</ModProjectName>
-		<ModVersion>1.1.1</ModVersion>
+		<ModVersion>1.1.2</ModVersion>
 		<ModAuthors>HisaCat</ModAuthors>
 		<ModCompany>$(ModAuthors)</ModCompany>
 	</PropertyGroup>
