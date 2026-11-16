@@ -15,7 +15,7 @@ $ErrorActionPreference = 'Stop'
 $Root = $PSScriptRoot
 $modDirName = Split-Path $Root -Leaf
 $AboutPath = Join-Path $Root 'About\About.xml'
-$Sln = Join-Path $Root "Source\$modDirName.sln"
+$Sln = Join-Path $Root "Source\$modDirName.slnx"
 
 if (-not (Test-Path -LiteralPath $AboutPath)) {
     throw "About.xml not found: $AboutPath"
