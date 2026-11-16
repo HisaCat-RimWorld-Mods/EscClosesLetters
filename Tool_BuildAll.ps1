@@ -1,19 +1,14 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Reads About/About.xml <supportedVersions>, builds the solution once per version, then runs filterexport (same as Publish.ps1).
+  Reads About/About.xml <supportedVersions> and builds the solution once per version.
 
 .PARAMETER Configuration
   MSBuild configuration (Debug or Release). Release is typical before publish.
-
-.PARAMETER SkipPublish
-  Only build all supported versions; do not run filterexport.
 #>
 param(
     [ValidateSet('Debug', 'Release')]
-    [string] $Configuration = 'Release',
-
-    [switch] $SkipPublish
+    [string] $Configuration = 'Release'
 )
 
 Set-StrictMode -Version Latest
@@ -23,7 +18,6 @@ $Root = $PSScriptRoot
 $modDirName = Split-Path $Root -Leaf
 $AboutPath = Join-Path $Root 'About\About.xml'
 $Sln = Join-Path $Root "Source\$modDirName.sln"
-$PublishDir = "../${modDirName}_Publish" 
 
 if (-not (Test-Path -LiteralPath $AboutPath)) {
     throw "About.xml not found: $AboutPath"
@@ -70,22 +64,4 @@ foreach ($ver in $versions) {
     }
 }
 
-if ($SkipPublish) {
-    Write-Host "`nSkipPublish: done after builds." -ForegroundColor Green
-    return
-}
-
-Write-Host "`n=== filterexport (publish) ===" -ForegroundColor Yellow
-Push-Location -LiteralPath $Root
-try {
-    # Same relative layout as Publish.ps1 / tasks.json "publish"
-    & filterexport -c './PublishFileFilter.xml' -o $PublishDir -y
-    if ($LASTEXITCODE -ne 0) {
-        throw "filterexport failed (exit code $LASTEXITCODE). Is filterexport on PATH?"
-    }
-}
-finally {
-    Pop-Location
-}
-
-Write-Host "`nDone. Output: $PublishDir" -ForegroundColor Green
+Write-Host "`nDone." -ForegroundColor Green

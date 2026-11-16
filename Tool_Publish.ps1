@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Runs filterexport from the mod root (same behavior as the former Publish.bat).
+  Runs filterexport from the mod root.
 #>
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'

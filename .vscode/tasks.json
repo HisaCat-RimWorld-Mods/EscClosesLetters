@@ -30,9 +30,9 @@
             }
         },
         {
-            "label": "build all versions and publish",
+            "label": "build all",
             "type": "shell",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/Tool_BuildAllAndPublish.ps1\"",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/Tool_BuildAll.ps1\"",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -46,7 +46,17 @@
                     "file": 1, "line": 2, "column": 3, "severity": 4, "code": 5, "message": 6
                 }
             }
-        }, {
+        },
+        {
+            "label": "build all and publish",
+            "dependsOn": [
+                "build all",
+                "publish"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [ ]
+        },
+        {
             "label": "clean",
             "type": "process",
             "command": "dotnet",
@@ -80,7 +90,8 @@
                 "-o",
                 "../${workspaceFolderBasename}_Publish",
                 "-y"
-            ]
+            ],
+            "problemMatcher": [ ]
         }
     ],
     "inputs": [

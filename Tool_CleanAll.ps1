@@ -5,7 +5,7 @@
   for both Debug and Release (so OutputPath and obj records match each build).
 
 .NOTES
-  Mirrors BuildAllAndPublish.ps1 path rules (folder name = solution name under Source/).
+  Mirrors Tool_BuildAll.ps1 path rules (folder name = solution name under Source/).
 #>
 param()
 
