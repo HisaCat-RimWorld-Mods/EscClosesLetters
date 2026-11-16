@@ -45,7 +45,7 @@ if ($versions.Count -eq 0) {
     throw 'About.xml: <supportedVersions> has no <li> entries.'
 }
 
-Write-Host "RimWorld targets from About.xml: $($versions -join ', ')" -ForegroundColor Cyan
+Write-Host "Build All: RimWorld targets from About.xml: $($versions -join ', ')" -ForegroundColor Cyan
 Write-Host "Configuration: $Configuration`n" -ForegroundColor Cyan
 
 foreach ($ver in $versions) {
