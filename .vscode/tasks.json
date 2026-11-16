@@ -32,7 +32,7 @@
         {
             "label": "build all versions and publish",
             "type": "shell",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/BuildAllAndPublish.ps1\"",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/Tool_BuildAllAndPublish.ps1\"",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -64,11 +64,11 @@
         {
             "label": "clean all versions (Debug+Release)",
             "type": "shell",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/CleanAll.ps1\"",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}/Tool_CleanAll.ps1\"",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": []
+            "problemMatcher": [ ]
         },
         {
             "label": "publish",
