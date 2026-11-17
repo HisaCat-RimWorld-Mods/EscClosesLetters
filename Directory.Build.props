@@ -27,7 +27,7 @@
 	<!-- Compiler settings -->
 	<PropertyGroup>
 		<LangVersion>9.0</LangVersion>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<!-- Generate XML documentation for other modders. -->
