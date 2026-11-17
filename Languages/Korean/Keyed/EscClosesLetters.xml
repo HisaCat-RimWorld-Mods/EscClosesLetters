@@ -5,20 +5,20 @@
     <EscClosesLetters>Esc Closes Letters</EscClosesLetters>
 
     <!-- Settings -->
-    <Settings.UseKeysToDismiss>창 닫기에 사용할 키</Settings.UseKeysToDismiss>
-    <Settings.UseCancelKeyToDismiss>취소 키 ({0})로 닫기</Settings.UseCancelKeyToDismiss>
-    <Settings.UseAcceptKeyToDismiss>확인 키 ({0})로 닫기</Settings.UseAcceptKeyToDismiss>
-    <Settings.CloseOnClickedOutside>창 밖을 클릭해서 닫기</Settings.CloseOnClickedOutside>
+    <EscClosesLetters.Settings.UseKeysToDismiss>창 닫기에 사용할 키</EscClosesLetters.Settings.UseKeysToDismiss>
+    <EscClosesLetters.Settings.UseCancelKeyToDismiss>취소 키 ({0})로 닫기</EscClosesLetters.Settings.UseCancelKeyToDismiss>
+    <EscClosesLetters.Settings.UseAcceptKeyToDismiss>확인 키 ({0})로 닫기</EscClosesLetters.Settings.UseAcceptKeyToDismiss>
+    <EscClosesLetters.Settings.CloseOnClickedOutside>창 밖을 클릭해서 닫기</EscClosesLetters.Settings.CloseOnClickedOutside>
 
-    <Settings.UseOptionsToDismiss>닫기로 사용할 선택지</Settings.UseOptionsToDismiss>
-    <Settings.UseOkOptionForDismiss>"{0}" 를 닫기 선택지로 취급</Settings.UseOkOptionForDismiss>
-    <Settings.UseCloseOptionForDismiss>"{0}" 를 닫기 선택지로 취급</Settings.UseCloseOptionForDismiss>
-    <Settings.UsePostponeLetterOptionForDismiss>"{0}" 를 닫기 선택지로 취급</Settings.UsePostponeLetterOptionForDismiss>
-    <Settings.UseRejectOptionForDismiss>"{0}" 를 닫기 선택지로 취급</Settings.UseRejectOptionForDismiss>
+    <EscClosesLetters.Settings.UseOptionsToDismiss>닫기로 사용할 선택지</EscClosesLetters.Settings.UseOptionsToDismiss>
+    <EscClosesLetters.Settings.UseOkOptionForDismiss>"{0}" 를 닫기 선택지로 취급</EscClosesLetters.Settings.UseOkOptionForDismiss>
+    <EscClosesLetters.Settings.UseCloseOptionForDismiss>"{0}" 를 닫기 선택지로 취급</EscClosesLetters.Settings.UseCloseOptionForDismiss>
+    <EscClosesLetters.Settings.UsePostponeLetterOptionForDismiss>"{0}" 를 닫기 선택지로 취급</EscClosesLetters.Settings.UsePostponeLetterOptionForDismiss>
+    <EscClosesLetters.Settings.UseRejectOptionForDismiss>"{0}" 를 닫기 선택지로 취급</EscClosesLetters.Settings.UseRejectOptionForDismiss>
 
-    <Settings.Debug>디버그</Settings.Debug>
-    <Settings.EnableLog>로그 활성화</Settings.EnableLog>
+    <EscClosesLetters.Settings.Debug>디버그</EscClosesLetters.Settings.Debug>
+    <EscClosesLetters.Settings.EnableLog>로그 활성화</EscClosesLetters.Settings.EnableLog>
 
-    <Settings.ResetToDefaults>기본값으로 초기화</Settings.ResetToDefaults>
+    <EscClosesLetters.Settings.ResetToDefaults>기본값으로 초기화</EscClosesLetters.Settings.ResetToDefaults>
 
 </LanguageData>

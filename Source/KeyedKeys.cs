@@ -15,21 +15,21 @@
             public const string EscClosesLetters = "EscClosesLetters";
             public static class Settings
             {
-                public const string UseKeysToDismiss = "Settings.UseKeysToDismiss";
-                public const string UseCancelKeyToDismiss = "Settings.UseCancelKeyToDismiss";
-                public const string UseAcceptKeyToDismiss = "Settings.UseAcceptKeyToDismiss";
-                public const string CloseOnClickedOutside = "Settings.CloseOnClickedOutside";
+                public const string UseKeysToDismiss = "EscClosesLetters.Settings.UseKeysToDismiss";
+                public const string UseCancelKeyToDismiss = "EscClosesLetters.Settings.UseCancelKeyToDismiss";
+                public const string UseAcceptKeyToDismiss = "EscClosesLetters.Settings.UseAcceptKeyToDismiss";
+                public const string CloseOnClickedOutside = "EscClosesLetters.Settings.CloseOnClickedOutside";
 
-                public const string UseOptionsToDismiss = "Settings.UseOptionsToDismiss";
-                public const string UseOkOptionForDismiss = "Settings.UseOkOptionForDismiss";
-                public const string UseCloseOptionForDismiss = "Settings.UseCloseOptionForDismiss";
-                public const string UsePostponeLetterOptionForDismiss = "Settings.UsePostponeLetterOptionForDismiss";
-                public const string UseRejectOptionForDismiss = "Settings.UseRejectOptionForDismiss";
+                public const string UseOptionsToDismiss = "EscClosesLetters.Settings.UseOptionsToDismiss";
+                public const string UseOkOptionForDismiss = "EscClosesLetters.Settings.UseOkOptionForDismiss";
+                public const string UseCloseOptionForDismiss = "EscClosesLetters.Settings.UseCloseOptionForDismiss";
+                public const string UsePostponeLetterOptionForDismiss = "EscClosesLetters.Settings.UsePostponeLetterOptionForDismiss";
+                public const string UseRejectOptionForDismiss = "EscClosesLetters.Settings.UseRejectOptionForDismiss";
 
-                public const string Debug = "Settings.Debug";
-                public const string EnableLog = "Settings.EnableLog";
+                public const string Debug = "EscClosesLetters.Settings.Debug";
+                public const string EnableLog = "EscClosesLetters.Settings.EnableLog";
 
-                public const string ResetToDefaults = "Settings.ResetToDefaults";
+                public const string ResetToDefaults = "EscClosesLetters.Settings.ResetToDefaults";
             }
         }
     }
