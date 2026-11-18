@@ -5,20 +5,20 @@
     <EscClosesLetters>Esc Closes Letters</EscClosesLetters>
 
     <!-- Settings -->
-    <Settings.UseKeysToDismiss>Keys used to dismiss the dialog</Settings.UseKeysToDismiss>
-    <Settings.UseCancelKeyToDismiss>Use Cancel ({0}) key</Settings.UseCancelKeyToDismiss>
-    <Settings.UseAcceptKeyToDismiss>Use Accept ({0}) key</Settings.UseAcceptKeyToDismiss>
-    <Settings.CloseOnClickedOutside>Close on clicked outside</Settings.CloseOnClickedOutside>
+    <EscClosesLetters.Settings.UseKeysToDismiss>Keys used to dismiss the dialog</EscClosesLetters.Settings.UseKeysToDismiss>
+    <EscClosesLetters.Settings.UseCancelKeyToDismiss>Use Cancel ({0}) key</EscClosesLetters.Settings.UseCancelKeyToDismiss>
+    <EscClosesLetters.Settings.UseAcceptKeyToDismiss>Use Accept ({0}) key</EscClosesLetters.Settings.UseAcceptKeyToDismiss>
+    <EscClosesLetters.Settings.CloseOnClickedOutside>Close on clicked outside</EscClosesLetters.Settings.CloseOnClickedOutside>
 
-    <Settings.UseOptionsToDismiss>Options treated as dismiss actions</Settings.UseOptionsToDismiss>
-    <Settings.UseOkOptionForDismiss>Use "{0}" option</Settings.UseOkOptionForDismiss>
-    <Settings.UseCloseOptionForDismiss>Use "{0}" option</Settings.UseCloseOptionForDismiss>
-    <Settings.UsePostponeLetterOptionForDismiss>Use "{0}" option</Settings.UsePostponeLetterOptionForDismiss>
-    <Settings.UseRejectOptionForDismiss>Use "{0}" option</Settings.UseRejectOptionForDismiss>
+    <EscClosesLetters.Settings.UseOptionsToDismiss>Options treated as dismiss actions</EscClosesLetters.Settings.UseOptionsToDismiss>
+    <EscClosesLetters.Settings.UseOkOptionForDismiss>Use "{0}" option</EscClosesLetters.Settings.UseOkOptionForDismiss>
+    <EscClosesLetters.Settings.UseCloseOptionForDismiss>Use "{0}" option</EscClosesLetters.Settings.UseCloseOptionForDismiss>
+    <EscClosesLetters.Settings.UsePostponeLetterOptionForDismiss>Use "{0}" option</EscClosesLetters.Settings.UsePostponeLetterOptionForDismiss>
+    <EscClosesLetters.Settings.UseRejectOptionForDismiss>Use "{0}" option</EscClosesLetters.Settings.UseRejectOptionForDismiss>
 
-    <Settings.Debug>Debug</Settings.Debug>
-    <Settings.EnableLog>Enable log</Settings.EnableLog>
+    <EscClosesLetters.Settings.Debug>Debug</EscClosesLetters.Settings.Debug>
+    <EscClosesLetters.Settings.EnableLog>Enable log</EscClosesLetters.Settings.EnableLog>
 
-    <Settings.ResetToDefaults>Reset to defaults</Settings.ResetToDefaults>
+    <EscClosesLetters.Settings.ResetToDefaults>Reset to defaults</EscClosesLetters.Settings.ResetToDefaults>
 
 </LanguageData>

@@ -10,7 +10,7 @@ namespace HisaCat.EscClosesLetters
         static Bootstrap()
         {
             var harmony = new Harmony(id);
-            harmony.PatchAll();
+            harmony.PatchAll(typeof(Bootstrap).Assembly);
         }
     }
 }

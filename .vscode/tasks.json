@@ -7,7 +7,7 @@
             "command": "dotnet",
             "args": [
                 "build",
-                "${workspaceFolder}/Source/${workspaceFolderBasename}.sln",
+                "${workspaceFolder}/Source/${workspaceFolderBasename}.slnx",
                 "-c",
                 "${input:configuration}",
                 "/property:RimWorldVersionOverride=${input:targetRimWorldVersion}",
@@ -62,7 +62,7 @@
             "command": "dotnet",
             "args": [
                 "clean",
-                "${workspaceFolder}/Source/${workspaceFolderBasename}.sln",
+                "${workspaceFolder}/Source/${workspaceFolderBasename}.slnx",
                 "-c",
                 "${input:configuration}",
                 "/property:RimWorldVersionOverride=${input:targetRimWorldVersion}",
