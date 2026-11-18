@@ -5,14 +5,14 @@
 
 		<ModName>Esc Closes Letters</ModName>
 		<ModProjectName>EscClosesLetters</ModProjectName>
-		<ModVersion>1.1.3</ModVersion>
+		<ModVersion>1.1.4</ModVersion>
 		<ModAuthors>HisaCat</ModAuthors>
 		<ModCompany>$(ModAuthors)</ModCompany>
 	</PropertyGroup>
 
 	<!-- Optional properties -->
 	<PropertyGroup>
-		<ModRepository>https://github.com/hisacat/EscClosesLetters</ModRepository>
+		<ModRepository>https://github.com/HisaCat-RimWorld-Mods/EscClosesLetters</ModRepository>
 		<ModSpdxLicense>MIT</ModSpdxLicense>
 	</PropertyGroup>
 
