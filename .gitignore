@@ -415,6 +415,7 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudiocode
 
 # Esc Closes Letters
+/AGENTS.md
 /*/Assemblies/*.dll
 /*/Assemblies/*.xml
 /*/Assemblies/*.pdb
