@@ -1,0 +1,17 @@
+[*.cs]
+# Duplicate word in a comment
+dotnet_diagnostic.RCS1243.severity = none
+# Unnecessary using directive
+dotnet_diagnostic.CS8019.severity = warning
+# Use object initializers
+dotnet_diagnostic.IDE0017.severity = silent
+# Use range operator
+dotnet_diagnostic.IDE0057.severity = silent
+# Simplify boolean comparison
+dotnet_diagnostic.RCS1049.severity = silent
+# Add braces to if-else (when expression spans over multiple lines)
+dotnet_diagnostic.RCS1003.severity = silent
+# Use index operator (IDE0056)
+dotnet_diagnostic.IDE0056.severity = silent
+# Compiler Warning (level 3) CS0419
+dotnet_diagnostic.CS0419.severity = silent
