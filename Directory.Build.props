@@ -1,7 +1,7 @@
 <Project>
 	<!-- Necessary properties -->
 	<PropertyGroup>
-		<TargetRimWorldVersion>1.7</TargetRimWorldVersion>
+		<TargetRimWorldVersion>1.6</TargetRimWorldVersion>
 
 		<ModName>Esc Closes Letters</ModName>
 		<ModProjectName>EscClosesLetters</ModProjectName>
