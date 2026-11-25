@@ -1,4 +1,5 @@
 ﻿using HisaCat.EscClosesLetters.InternalRefs.Accessors;
+using HisaCat.EscClosesLetters.Settings;
 using Verse;
 
 namespace HisaCat.EscClosesLetters
@@ -28,7 +29,7 @@ namespace HisaCat.EscClosesLetters
         static LetterDismissConfig()
         {
             UpdateDismissOptionTexts();
-            Logger.Message($"{nameof(LetterDismissConfig)}.ctor", $"Dismiss option texts updated.");
+            Logger.Message($"{nameof(LetterDismissConfig)}.ctor", "Dismiss option texts updated.");
         }
     }
 

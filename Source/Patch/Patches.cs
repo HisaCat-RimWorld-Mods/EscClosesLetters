@@ -6,8 +6,9 @@ using HisaCat.EscClosesLetters.InternalRefs.Accessors;
 using System.Reflection;
 using System.Collections.Generic;
 using HisaCat.Utilities;
+using HisaCat.EscClosesLetters.Settings;
 
-namespace HisaCat.EscClosesLetters
+namespace HisaCat.EscClosesLetters.Patch
 {
     [HarmonyPriority(Priority.Last)]
     [HarmonyPatch(typeof(LanguageDatabase), nameof(LanguageDatabase.InitAllMetadata))]
@@ -16,16 +17,18 @@ namespace HisaCat.EscClosesLetters
         // Language change reloads play data asynchronously:
         // SelectLanguage -> PlayDataLoader.LoadAllPlayData -> LanguageDatabase.InitAllMetadata.
         // Update dismiss option texts here so they reflect the newly loaded language metadata.
+        [HarmonyPostfix]
         static void Postfix()
         {
             LetterDismissConfig.UpdateDismissOptionTexts();
-            Logger.Message(nameof(LanguageDatabase.InitAllMetadata), $"Dismiss option texts updated.");
+            Logger.Message(nameof(LanguageDatabase.InitAllMetadata), "Dismiss option texts updated.");
         }
     }
 
     [HarmonyPatch]
     internal static class Patch_ChoiceLetter_AllDerived_OpenLetter
     {
+        [HarmonyTargetMethod]
         static IEnumerable<MethodBase> TargetMethods()
             => HarmonyUtilities.GetOverriddenMethods(typeof(ChoiceLetter), nameof(ChoiceLetter.OpenLetter), includeRootType: true);
 
@@ -54,6 +57,7 @@ namespace HisaCat.EscClosesLetters
                 $"Type: '{__instance.GetType().FullName}'");
         }
 
+        [HarmonyFinalizer]
         static void Finalizer(ChoiceLetter __instance, ref OpenLetterContext __state)
         {
             if (__state.isLeafOverriddenMethodForThisCall == false) return;
@@ -89,12 +93,12 @@ namespace HisaCat.EscClosesLetters
     // (DiaNode nodeRoot, bool delayInteractivity = false, bool radioMode = false, string title = null)
     internal static class Patch_Dialog_NodeTree_Ctor
     {
-#pragma warning disable IDE0051
+        [HarmonyPostfix]
         static void Postfix(Dialog_NodeTree __instance)
         {
             __instance.GetCurNode();
             if (LetterDismissContext.IsOpeningLetter == false) return;
-            Logger.Message(nameof(Patch_Dialog_NodeTree_Ctor), $"Letter dialog constructed.");
+            Logger.Message(nameof(Patch_Dialog_NodeTree_Ctor), "Letter dialog constructed.");
 
             if (LetterDismissPolicy.CanDismissDialog(__instance, out var dismissOption) == false) return;
             Logger.Message(nameof(Patch_Dialog_NodeTree_Ctor), $"Dismiss option: '{dismissOption.GetText()}'");
@@ -134,7 +138,6 @@ namespace HisaCat.EscClosesLetters
                 LetterDismissContext.SetCloseOnClickedOutside(true);
             }
         }
-#pragma warning restore IDE0051
     }
 
     // Run before other patches so we can clear our dismiss target as soon as this option is activated.
@@ -142,7 +145,7 @@ namespace HisaCat.EscClosesLetters
     [HarmonyPatch(typeof(DiaOption), nameof(DiaOption_Members.Activate))]
     internal static class Patch_DiaOption_Activate
     {
-#pragma warning disable IDE0051
+        [HarmonyPostfix]
         static void Postfix(DiaOption __instance)
         {
             // We cannot rule out cases where another mod invokes this DiaOption's Activate method.
@@ -153,11 +156,10 @@ namespace HisaCat.EscClosesLetters
                 if (LetterDismissContext.TargetDialog != null)
                 {
                     LetterDismissContext.ClearTarget();
-                    Logger.Message(nameof(DiaOption_Members.Activate), $"Target letter dialog cleared (dismiss option activated).");
+                    Logger.Message(nameof(DiaOption_Members.Activate), "Target letter dialog cleared (dismiss option activated).");
                 }
             }
         }
-#pragma warning restore IDE0051
     }
 
     internal static class Patch_Window_And_WindowStack
@@ -165,6 +167,7 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPatch(typeof(Window), nameof(Window.PreClose))]
         internal static class Patch_PreClose
         {
+            [HarmonyPostfix]
             static void Postfix(Window __instance)
             {
                 if (LetterDismissContext.TargetDialog != __instance) return;
@@ -172,7 +175,7 @@ namespace HisaCat.EscClosesLetters
                 if (LetterDismissContext.TargetDialog != null)
                 {
                     LetterDismissContext.ClearTarget();
-                    Logger.Message(nameof(Window.PreClose), $"Target letter dialog cleared (dialog closing).");
+                    Logger.Message(nameof(Window.PreClose), "Target letter dialog cleared (dialog closing).");
                 }
             }
         }
@@ -180,6 +183,7 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPatch(typeof(Window), nameof(Window.OnCancelKeyPressed))]
         internal static class Patch_OnCancelKeyPressed
         {
+            [HarmonyPrefix]
             static bool Prefix(Window __instance)
             {
                 if (LetterDismissContext.TargetDialog != __instance) return true;
@@ -197,6 +201,7 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPatch(typeof(Window), nameof(Window.OnAcceptKeyPressed))]
         internal static class Patch_OnAcceptKeyPressed
         {
+            [HarmonyPrefix]
             static bool Prefix(Window __instance)
             {
                 if (LetterDismissContext.TargetDialog != __instance) return true;
@@ -215,6 +220,7 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPatch(typeof(Window), nameof(Window.Notify_ClickOutsideWindow))]
         internal static class Patch_Notify_ClickOutsideWindow
         {
+            [HarmonyPrefix]
             static bool Prefix(Window __instance)
             {
                 if (LetterDismissContext.TargetDialog != __instance) return true;
@@ -237,7 +243,7 @@ namespace HisaCat.EscClosesLetters
         [HarmonyPatch(typeof(WindowStack), nameof(WindowStack_Members.NotifyOutsideClicks))]
         internal static class Patch_WindowStack_NotifyOutsideClicks
         {
-#pragma warning disable IDE0051
+            [HarmonyPostfix]
             static void Postfix()
             {
                 if (deferredDismissWindowFromClickOutside != null)
@@ -247,7 +253,6 @@ namespace HisaCat.EscClosesLetters
                     deferredDismissWindowFromClickOutside = null;
                 }
             }
-#pragma warning restore IDE0051
         }
 
         internal static bool TryActivateDismissOption(string methodName)

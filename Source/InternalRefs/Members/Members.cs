@@ -1,7 +1,3 @@
-using HarmonyLib;
-using System;
-using Verse;
-
 namespace HisaCat.EscClosesLetters.InternalRefs.Members
 {
     internal static class DiaOption_Members

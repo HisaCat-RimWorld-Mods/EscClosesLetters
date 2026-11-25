@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace HisaCat.EscClosesLetters
+namespace HisaCat.EscClosesLetters.Settings
 {
     public class LetterDismissModSettings : ModSettings
     {
