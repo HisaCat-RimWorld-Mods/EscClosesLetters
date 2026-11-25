@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using System.Xml;
+using UnityEngine;
 using Verse;
 
 namespace HisaCat.EscClosesLetters.Settings
@@ -74,10 +77,74 @@ namespace HisaCat.EscClosesLetters.Settings
 
     public class LetterDismissMod : Mod
     {
+        // LetterDismissModSettings lived in HisaCat.EscClosesLetters before the settings namespace move.
+        // ScribeExtractor.SaveableFromNode calls Log.Error when this Class cannot be resolved, which opens
+        // the log window, then falls back to the requested type. Rewrite the attribute before GetSettings
+        // so the saved values load as the current type and that error is never raised.
+        private const string LegacySettingsClassName = "HisaCat.EscClosesLetters.LetterDismissModSettings";
+
         private readonly LetterDismissModSettings settings = null;
         public LetterDismissMod(ModContentPack content) : base(content)
         {
+            this.RewriteLegacySettingsClassAttribute();
             this.settings = this.GetSettings<LetterDismissModSettings>();
+        }
+
+        /// <summary>
+        /// If the saved ModSettings Class is <see cref="LegacySettingsClassName"/>, replace only that attribute
+        /// with <see cref="LetterDismissModSettings"/>'s current full name.
+        /// </summary>
+        /// <remarks>
+        /// Mod.GetSettings loads LoadedModManager.ReadModSettings(Content.FolderName, mod type name).
+        /// The filename is private GetSettingsFilename: ConfigFolderPath plus
+        /// GenText.SanitizeFilename("Mod_{folder}_{modType}.xml"). Same expression is used here.
+        /// Only the Class attribute value is changed, so existing setting values stay as saved.
+        /// A missing file, the current class name, or any other class name is left untouched.
+        /// </remarks>
+        private void RewriteLegacySettingsClassAttribute()
+        {
+            string settingsPath = null;
+            string temporaryPath = null;
+            try
+            {
+                settingsPath = Path.Combine(
+                    GenFilePaths.ConfigFolderPath,
+                    GenText.SanitizeFilename($"Mod_{this.Content.FolderName}_{this.GetType().Name}.xml"));
+                if (File.Exists(settingsPath) == false)
+                    return;
+
+                XmlDocument document = new();
+                document.PreserveWhitespace = true;
+                document.Load(settingsPath);
+
+                XmlAttribute classAttribute = document.DocumentElement?["ModSettings"]?.Attributes?["Class"];
+                if (classAttribute == null)
+                    return;
+                if (classAttribute.Value != LegacySettingsClassName)
+                    return;
+
+                classAttribute.Value = typeof(LetterDismissModSettings).FullName;
+                // Save beside the original, then replace it. A failed Save must not truncate the settings file.
+                temporaryPath = settingsPath + ".tmp";
+                document.Save(temporaryPath);
+                File.Replace(temporaryPath, settingsPath, null);
+            }
+            catch (Exception ex)
+            {
+                if (temporaryPath != null && File.Exists(temporaryPath))
+                {
+                    try
+                    {
+                        File.Delete(temporaryPath);
+                    }
+                    catch (Exception deleteException)
+                    {
+                        Log.Warning($"[EscClosesLetters] Failed to delete temporary settings file '{temporaryPath}': {deleteException}");
+                    }
+                }
+
+                Log.Warning($"[EscClosesLetters] Failed to rewrite the legacy settings class in '{settingsPath}': {ex}");
+            }
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
